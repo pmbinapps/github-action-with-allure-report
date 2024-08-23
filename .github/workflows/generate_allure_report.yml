@@ -66,6 +66,9 @@ jobs:
           
       - name: Send Allure report to Slack # Step to send Allure report to Slack
         if: always() # Execute even if previous steps fail
+        run: | #https://pmbinapps.github.io/github-action-with-allure-report/5/index.html
+      - name: Send Allure report to Slack # Step to send Allure report to Slack
+        if: always() # Execute even if previous steps fail
         run: |
-          report_link="${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/${{ vars.ALLURE_RESULTS_PATH }}"
+          report_link="${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/${{ vars.ALLURE_RESULTS_PATH }}/index.html"
           curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"New Allure report generated! Check it out: ${report_link}\"}" ${{ secrets.SLACK_WEBHOOK_URL }}
