@@ -72,4 +72,5 @@ jobs:
         run: |
           REPO_NAME=${GITHUB_REPOSITORY##*/} |
           allure_report_link="https://${{ github.repository_owner }}.github.io/$REPO_NAME/${{ github.run_number }}/index.html" |
+          echo $allure_report_link |
           curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"New Allure report generated! Check it out: ${allure_report_link}\"}" ${{ secrets.SLACK_WEBHOOK_URL }}
